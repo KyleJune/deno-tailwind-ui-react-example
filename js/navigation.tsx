@@ -1,14 +1,14 @@
 import {
   BellIcon,
   Disclosure,
-  Fragment,
   Menu,
   MenuIcon,
   NavLink,
-  React,
   Transition,
   tw,
   XIcon,
+  Fragment,
+  React,
 } from "./deps.ts";
 
 const navigation = [
@@ -71,13 +71,11 @@ export const Navigation = () => (
                     <NavLink
                       key={item.name}
                       to={item.to}
-                      exact
-                      className={classNames(
-                        "text-gray-300 hover:bg-gray-700 hover:text-white",
+                      end
+                      className={({ isActive }) => classNames(
+                        isActive ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white",
                         "px-3 py-2 rounded-md text-sm font-medium",
                       )}
-                      activeClassName={tw
-                        `bg-gray-900 hover:bg-gray-900 text-white`}
                     >
                       {item.name}
                     </NavLink>
@@ -183,12 +181,11 @@ export const Navigation = () => (
               <NavLink
                 key={item.name}
                 to={item.to}
-                exact
-                className={classNames(
-                  "text-gray-300 hover:bg-gray-700 hover:text-white",
+                end
+                className={({ isActive }) => classNames(
+                  isActive ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white",
                   "block px-3 py-2 rounded-md text-base font-medium",
                 )}
-                activeClassName={tw`bg-gray-900 hover:bg-gray-900 text-white`}
               >
                 {item.name}
               </NavLink>

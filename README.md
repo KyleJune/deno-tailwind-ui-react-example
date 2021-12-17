@@ -11,10 +11,10 @@ router works.
 
 ## Install
 
-You will need to install [packup](https://deno.land/x/packup@v0.0.15) and [twd](https://deno.land/x/twd@v0.4.8).
+You will need to install [packup](https://deno.land/x/packup@v0.1.10) and [twd](https://deno.land/x/twd@v0.4.8).
 
 ```sh
-deno run -A https://deno.land/x/packup@v0.0.15/install.ts
+deno run -A https://deno.land/x/packup@v0.1.10/install.ts
 deno install --allow-read=. --allow-write=. --allow-net=deno.land,esm.sh,cdn.esm.sh -fq https://deno.land/x/twd@v0.4.8/cli.ts
 ```
 
