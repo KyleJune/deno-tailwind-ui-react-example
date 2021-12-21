@@ -6,36 +6,23 @@ with Deno.
 The navigation bar is from
 [Tailwind UI's preview components list](https://tailwindui.com/preview#component-70a9bdf83ef2c8568c5cddf6c39c2331).
 I updated it to use NavLinks from React Router. For the body of each page, I
-just have it display the name of the page just to demonstrate that the react
-router works.
+just have it display the name of the page to demonstrate that the react router
+works.
 
-## Install
-
-You will need to install [packup](https://deno.land/x/packup@v0.1.10) and [twd](https://deno.land/x/twd@v0.4.8).
-
-```sh
-deno run -A https://deno.land/x/packup@v0.1.10/install.ts
-deno install --allow-read=. --allow-write=. --allow-net=deno.land,esm.sh,cdn.esm.sh -fq https://deno.land/x/twd@v0.4.8/cli.ts
-```
+[Click here](https://tailwind-ui-react-example.deno.dev/) to see this example live on deno deploy.
 
 ## Development
 
-The twd cli tool will update the style.css file as you make changes to your
-application.
+To start the application, use the `make run` command. While making changes, I
+recommend using the `make run-watch` command so that it automatically restarts
+when changes are saved.
 
-```sh
-twd -w index.html -o css/style.css
-```
+To create the bundle for the client application, use the `make bundle` command.
+While making changes, I recommend using the `make bundle-watch` command so that
+a new bundle is generated when changes are saved.
 
-The packup cli tool will handle hot reloading of the application during
-development.
-
-```sh
-packup index.html
-```
-
-For classes to be included in the styles.css, you must use the tw template
-string around the className.
+For classes to be included in the style tag when rendered on the server, you
+must use the tw template string around the className.
 
 ```tsx
 import { React, tw } from "./deps.ts";
@@ -47,17 +34,6 @@ export const Example = () => (
 );
 ```
 
-## Build
+## Deploy
 
-If you have not used the twd cli tool yet, you will need to do so to generate
-the style.css file for your build.
-
-```sh
-twd index.html -o css/style.css
-```
-
-The packup cli tool will handle generating a distribution of the application.
-
-```sh
-packup build index.html
-```
+To be able to deploy this application, you must commit the bundle to the repo.
