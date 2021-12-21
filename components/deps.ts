@@ -26,3 +26,5 @@ export {
   MenuIcon,
   XIcon,
 } from "https://esm.sh/@heroicons/react@1.0.5/outline?target=deno&pin=v58&deps=react@17.0.2,react-dom@17.0.2";
+
+export { Helmet } from "https://esm.sh/react-helmet@6.1.0?target=deno&pin=v58";

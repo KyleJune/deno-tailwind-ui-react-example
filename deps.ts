@@ -9,7 +9,7 @@ export { typography };
 
 export {
   domSheet,
-  getStyleTagProperties,
+  getStyleTag,
   virtualSheet,
 } from "https://esm.sh/twind@0.16.16/sheets";
 export type { VirtualSheet } from "https://esm.sh/twind@0.16.16/sheets";
