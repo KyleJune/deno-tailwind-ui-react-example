@@ -9,6 +9,8 @@ I updated it to use NavLinks from React Router. For the body of each page, I
 just have it display the name of the page to demonstrate that the react router
 works.
 
+[Click here](https://tailwind-ui-react-example.deno.dev/) to see this example live on deno deploy.
+
 ## Development
 
 To start the application, use the `make run` command. While making changes, I
@@ -32,6 +34,6 @@ export const Example = () => (
 );
 ```
 
-## Build
+## Deploy
 
 To be able to deploy this application, you must commit the bundle to the repo.
