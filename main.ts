@@ -7,7 +7,7 @@ await serve(async (req) => {
   console.log(pathname);
   return pathname === "/main.js"
     ? new Response(
-      await Deno.readTextFile("./static/main.js"),
+      await Deno.readTextFile("./public/main.js"),
       { headers: { "content-type": "application/javascript" } },
     )
     : !extname(pathname)

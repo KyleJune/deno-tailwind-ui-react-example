@@ -4,9 +4,9 @@ run-watch:
 	deno run -A --watch --config=deno.json main.ts
 
 bundle:
-	deno bundle --config=deno.json ./components/main.tsx ./static/main.js
+	deno bundle --config=deno.json ./components/main.tsx ./public/main.js
 bundle-watch:
-	deno bundle --watch --config=deno.json ./components/main.tsx ./static/main.js
+	deno bundle --watch --config=deno.json ./components/main.tsx ./public/main.js
 
 fmt:
 	deno fmt --config=deno.json

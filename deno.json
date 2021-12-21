@@ -4,12 +4,12 @@
   },
   "lint": {
     "files": {
-      "exclude": ["static/", "deps/"]
+      "exclude": ["public/", "deps/"]
     }
   },
   "fmt": {
     "files": {
-      "exclude": ["static/", "deps/"]
+      "exclude": ["public/", "deps/"]
     }
   }
 }
