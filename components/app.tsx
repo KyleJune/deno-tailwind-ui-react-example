@@ -1,3 +1,6 @@
+/** @jsx React.createElement */
+/** @jsxFrag React.Fragment */
+
 import { React, Route, Routes } from "./deps.ts";
 import { Navigation } from "./navigation.tsx";
 

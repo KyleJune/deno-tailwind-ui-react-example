@@ -1,3 +1,6 @@
+/** @jsx React.createElement */
+/** @jsxFrag React.Fragment */
+
 import {
   BellIcon,
   Disclosure,

@@ -1,3 +1,5 @@
+/** @jsx React.createElement */
+
 import { React, setup } from "./components/deps.ts";
 import {
   getStyleTagProperties,
