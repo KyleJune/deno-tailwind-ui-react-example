@@ -7,6 +7,4 @@ const BrowserApp = () => (
   </BrowserRouter>
 );
 
-addEventListener("DOMContentLoaded", () => {
-  ReactDOM.render(<BrowserApp />, document.querySelector("#main"));
-});
+ReactDOM.hydrate(<BrowserApp />, document.documentElement);

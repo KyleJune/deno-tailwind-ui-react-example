@@ -4,22 +4,18 @@ import {
   Menu,
   MenuIcon,
   NavLink,
+  React,
   Transition,
   tw,
   XIcon,
-  Fragment,
-  React,
 } from "./deps.ts";
+const { Fragment } = React;
 
 const navigation = [
   { name: "Home", to: "/" },
   { name: "About", to: "/about" },
   { name: "Users", to: "/users" },
 ];
-
-function classNames(...classes: string[]) {
-  return tw`${classes.filter(Boolean).join(" ")}`;
-}
 
 export const Navigation = () => (
   <Disclosure as="nav" className={tw`bg-gray-800`}>
@@ -38,9 +34,7 @@ export const Navigation = () => (
               >
                 <span className={tw`sr-only`}>Open main menu</span>
                 {open
-                  ? (
-                    <XIcon className={tw`block h-6 w-6`} aria-hidden="true" />
-                  )
+                  ? <XIcon className={tw`block h-6 w-6`} aria-hidden="true" />
                   : (
                     <MenuIcon
                       className={tw`block h-6 w-6`}
@@ -72,10 +66,14 @@ export const Navigation = () => (
                       key={item.name}
                       to={item.to}
                       end
-                      className={({ isActive }) => classNames(
-                        isActive ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "px-3 py-2 rounded-md text-sm font-medium",
-                      )}
+                      className={({ isActive }) => (tw`
+                        ${
+                        isActive
+                          ? "bg-gray-900 text-white"
+                          : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                      }
+                        px-3 py-2 rounded-md text-sm font-medium
+                      `)}
                     >
                       {item.name}
                     </NavLink>
@@ -131,10 +129,14 @@ export const Navigation = () => (
                           {({ active }) => (
                             <a
                               href="#"
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700",
-                              )}
+                              className={tw`
+                                ${
+                                active
+                                  ? "bg-gray-100"
+                                  : ""
+                              }
+                                block px-4 py-2 text-sm text-gray-700
+                              `}
                             >
                               Your Profile
                             </a>
@@ -144,10 +146,10 @@ export const Navigation = () => (
                           {({ active }) => (
                             <a
                               href="#"
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700",
-                              )}
+                              className={tw`
+                                ${active ? "bg-gray-100" : ""}
+                                block px-4 py-2 text-sm text-gray-700
+                              `}
                             >
                               Settings
                             </a>
@@ -157,10 +159,10 @@ export const Navigation = () => (
                           {({ active }) => (
                             <a
                               href="#"
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700",
-                              )}
+                              className={tw`
+                                ${active ? "bg-gray-100" : ""}
+                                block px-4 py-2 text-sm text-gray-700
+                              `}
                             >
                               Sign out
                             </a>
@@ -182,10 +184,14 @@ export const Navigation = () => (
                 key={item.name}
                 to={item.to}
                 end
-                className={({ isActive }) => classNames(
-                  isActive ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                  "block px-3 py-2 rounded-md text-base font-medium",
-                )}
+                className={({ isActive }) => (tw`
+                  ${
+                  isActive
+                    ? "bg-gray-900 text-white"
+                    : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                }
+                  block px-3 py-2 rounded-md text-base font-medium
+                `)}
               >
                 {item.name}
               </NavLink>

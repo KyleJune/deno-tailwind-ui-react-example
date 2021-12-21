@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "dom.asynciterable", "deno.ns"]
+  },
+  "lint": {
+    "files": {
+      "exclude": ["static/", "deps/"]
+    }
+  },
+  "fmt": {
+    "files": {
+      "exclude": ["static/", "deps/"]
+    }
+  }
+}
