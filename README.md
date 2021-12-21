@@ -9,7 +9,8 @@ I updated it to use NavLinks from React Router. For the body of each page, I
 just have it display the name of the page to demonstrate that the react router
 works.
 
-[Click here](https://tailwind-ui-react-example.deno.dev/) to see this example live on deno deploy.
+[Click here](https://tailwind-ui-react-example.deno.dev/) to see this example
+live on deno deploy.
 
 ## Development
 
