@@ -1,12 +1,12 @@
 run:
-	deno run -A --config=deno.json main.ts
-run-watch:
-	deno run -A --watch --config=deno.json main.ts
+	deno run -A --config=deno.json ${DENO_ARGS} main.ts
+
+run-dev: export APP_ENV = development
+run-dev:
+	deno run -A --config=deno.json scripts/dev.ts
 
 bundle:
-	deno bundle --config=deno.json ./components/main.tsx ./static/main.js
-bundle-watch:
-	deno bundle --watch --config=deno.json ./components/main.tsx ./static/main.js
+	deno bundle --config=deno.json ${DENO_ARGS} ./components/main.tsx ./public/main.js
 
 fmt:
 	deno fmt --config=deno.json
@@ -15,5 +15,3 @@ fmt-watch:
 
 lint:
 	deno lint --config=deno.json
-lint-watch:
-	deno lint --watch --config=deno.json

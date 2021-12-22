@@ -1,7 +1,5 @@
 /** @jsx React.createElement */
-/** @jsxFrag React.Fragment */
 
-import { Helmet, React, setup } from "./components/deps.ts";
 import {
   getStyleTag,
   renderToString,
@@ -9,8 +7,10 @@ import {
   typography,
   VirtualSheet,
   virtualSheet,
-} from "./deps.ts";
-import { App } from "./components/app.tsx";
+} from "../deps.ts";
+import { isDevelopment } from "../utils/environment.ts";
+import { App } from "./app.tsx";
+import { Helmet, React, setup } from "./deps.ts";
 
 function setupSheet(): VirtualSheet {
   const sheet = virtualSheet();
@@ -30,10 +30,11 @@ function getSheet(): VirtualSheet {
   return sheet;
 }
 
-interface HTMLProps {
+export interface ServerProps {
   location: string;
 }
-const HTML = (props: HTMLProps) => {
+
+export const Server = (props: ServerProps) => {
   const helmet = Helmet.renderStatic();
   const htmlAttrs = helmet.htmlAttributes.toComponent();
   const bodyAttrs = helmet.bodyAttributes.toComponent();
@@ -46,6 +47,7 @@ const HTML = (props: HTMLProps) => {
         {helmet.link.toComponent()}
         <style id="__twind" />
         {helmet.style.toComponent()}
+        {isDevelopment() ? <script src="/live-reload.js" /> : null}
         {helmet.script.toComponent()}
         {helmet.noscript.toComponent()}
       </head>
@@ -60,8 +62,11 @@ const HTML = (props: HTMLProps) => {
   );
 };
 
+/** Renders the application on the server. */
 export function ssr(location: string) {
   const sheet = getSheet();
-  const html = `<!DOCTYPE html>${renderToString(<HTML location={location} />)}`;
+  const html = `<!DOCTYPE html>${
+    renderToString(<Server location={location} />)
+  }`;
   return html.replace('<style id="__twind"></style>', getStyleTag(sheet));
 }

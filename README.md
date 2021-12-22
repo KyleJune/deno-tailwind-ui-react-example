@@ -5,22 +5,24 @@ with Deno.
 
 The navigation bar is from
 [Tailwind UI's preview components list](https://tailwindui.com/preview#component-70a9bdf83ef2c8568c5cddf6c39c2331).
-I updated it to use NavLinks from React Router. For the body of each page, I
-just have it display the name of the page to demonstrate that the react router
-works.
+I updated it to use NavLinks from React Router. For the body of most pages, I
+just have it display the name of the page and update the title to show that
+React Router and Helmet are working correctly.
 
 [Click here](https://tailwind-ui-react-example.deno.dev/) to see this example
 live on deno deploy.
 
 ## Development
 
-To start the application, use the `make run` command. While making changes, I
-recommend using the `make run-watch` command so that it automatically restarts
-when changes are saved.
+To start the application, use the `make run` command. This would run the script
+as if it were in production, without any live reloading.
 
 To create the bundle for the client application, use the `make bundle` command.
-While making changes, I recommend using the `make bundle-watch` command so that
-a new bundle is generated when changes are saved.
+
+To start the application in development mode, use the `make run-dev` command. It
+will automatically reload the page whenever the server is restarted or a public
+file is modified. It will also run make bundle in watch mode so that the page
+will reload whenever there is a change that affects the bundle.
 
 For classes to be included in the style tag when rendered on the server, you
 must use the tw template string around the className.

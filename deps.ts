@@ -1,3 +1,5 @@
+export { extname } from "https://deno.land/std@0.118.0/path/mod.ts";
+
 // https://esm.sh/react-dom@17.0.2/server?target=deno
 export { renderToString } from "./deps/react-dom/server.ts";
 
@@ -14,5 +16,10 @@ export {
 } from "https://esm.sh/twind@0.16.16/sheets";
 export type { VirtualSheet } from "https://esm.sh/twind@0.16.16/sheets";
 
-export { serve } from "https://deno.land/std@0.118.0/http/server.ts";
-export { extname } from "https://deno.land/std@0.118.0/path/mod.ts";
+export {
+  Application,
+  isHttpError,
+  Router,
+  ServerSentEvent,
+} from "https://deno.land/x/oak@v10.1.0/mod.ts";
+export type { ServerSentEventTarget } from "https://deno.land/x/oak@v10.1.0/mod.ts";
