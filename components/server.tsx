@@ -10,7 +10,13 @@ import {
 } from "../deps.ts";
 import { isDevelopment } from "../utils/environment.ts";
 import { App } from "./app.tsx";
-import { Helmet, React, setup } from "./deps.ts";
+import {
+  FilledContext,
+  HelmetData,
+  HelmetProvider,
+  React,
+  setup,
+} from "./deps.ts";
 
 function setupSheet(): VirtualSheet {
   const sheet = virtualSheet();
@@ -30,12 +36,12 @@ function getSheet(): VirtualSheet {
   return sheet;
 }
 
-export interface ServerProps {
-  location: string;
+export interface HTMLProps {
+  helmet: HelmetData;
 }
 
-export const Server = (props: ServerProps) => {
-  const helmet = Helmet.renderStatic();
+export const HTML = (props: HTMLProps) => {
+  const { helmet } = props;
   const htmlAttrs = helmet.htmlAttributes.toComponent();
   const bodyAttrs = helmet.bodyAttributes.toComponent();
   return (
@@ -43,6 +49,7 @@ export const Server = (props: ServerProps) => {
       <head>
         {helmet.base.toComponent()}
         {helmet.title.toComponent()}
+        {helmet.priority.toComponent()}
         {helmet.meta.toComponent()}
         {helmet.link.toComponent()}
         <style id="__twind" />
@@ -52,9 +59,7 @@ export const Server = (props: ServerProps) => {
         {helmet.noscript.toComponent()}
       </head>
       <body {...bodyAttrs}>
-        <StaticRouter location={props.location}>
-          <App />
-        </StaticRouter>
+        <div id="app" />
         <script type="module" src="https://cdn.esm.sh/twind@0.16.16/shim" />
         <script type="module" src="/main.js" />
       </body>
@@ -62,11 +67,31 @@ export const Server = (props: ServerProps) => {
   );
 };
 
+export interface ServerAppProps {
+  helmetContext: Record<never, never>;
+  location: string;
+}
+
+const ServerApp = (props: ServerAppProps) => (
+  <HelmetProvider context={props.helmetContext}>
+    <StaticRouter location={props.location}>
+      <App />
+    </StaticRouter>
+  </HelmetProvider>
+);
+
 /** Renders the application on the server. */
 export function ssr(location: string) {
+  const helmetContext = {};
   const sheet = getSheet();
-  const html = `<!DOCTYPE html>${
-    renderToString(<Server location={location} />)
+  const renderedApp = renderToString(
+    <ServerApp helmetContext={helmetContext} location={location} />,
+  );
+  const { helmet } = helmetContext as FilledContext;
+  const renderedHTML = `<!DOCTYPE html>${
+    renderToString(<HTML helmet={helmet} />)
   }`;
-  return html.replace('<style id="__twind"></style>', getStyleTag(sheet));
+  return renderedHTML
+    .replace('<style id="__twind"></style>', getStyleTag(sheet))
+    .replace('<div id="app"></div>', renderedApp);
 }

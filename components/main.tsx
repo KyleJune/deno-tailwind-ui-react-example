@@ -1,11 +1,14 @@
 /** @jsx React.createElement */
 
-import { BrowserRouter, React, ReactDOM } from "./deps.ts";
+import { BrowserRouter, HelmetProvider, React, ReactDOM } from "./deps.ts";
 import { App } from "./app.tsx";
 
-ReactDOM.hydrate(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  document.getElementById("app"),
+const BrowserApp = () => (
+  <HelmetProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </HelmetProvider>
 );
+
+ReactDOM.hydrate(<BrowserApp />, document.getElementById("app"));
