@@ -3,7 +3,6 @@ const bundle = Deno.run({
   env: {
     "DENO_ARGS": "--watch",
   },
-  stderr: "null",
   stdin: "null",
   stdout: "null",
 });
@@ -16,7 +15,6 @@ const liveReload = Deno.run({
     "--config=deno.json",
     "./scripts/live_reload_server.ts",
   ],
-  stderr: "null",
   stdin: "null",
   stdout: "null",
 });
