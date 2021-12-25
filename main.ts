@@ -1,6 +1,7 @@
 import { Application, extname, Router } from "./deps.ts";
 import { ssr } from "./components/server.tsx";
 import { isDevelopment } from "./utils/environment.ts";
+import { trySend } from "./utils/oak.ts";
 
 interface Post {
   title: string;
@@ -54,21 +55,14 @@ router
       response.status = 200;
       response.body = ssr(pathname + search);
     } else {
-      let filename = "";
+      let filename: string | undefined = undefined;
       if (isDevelopment()) {
-        try {
-          filename = await context.send({
-            root: `${Deno.cwd()}/development/public`,
-          }) ?? "";
-        } catch (e) {
-          console.error(e);
-        }
+        filename = await trySend(context, {
+          root: `${Deno.cwd()}/public/development`,
+        });
       }
       if (!filename) {
-        await context.send({ root: `${Deno.cwd()}/public` })
-          .catch((e) => {
-            console.error(e);
-          });
+        await trySend(context, { root: `${Deno.cwd()}/public/all` });
       }
     }
   });
