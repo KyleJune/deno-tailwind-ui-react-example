@@ -25,14 +25,6 @@ function reload(): void {
   }
 })();
 
-(async () => {
-  const watcher = Deno.watchFs("development/public");
-  for await (const event of watcher) {
-    console.log("live reload:", event);
-    reload();
-  }
-})();
-
 const app = new Application();
 const router = new Router()
   .use(async ({ request }, next) => {

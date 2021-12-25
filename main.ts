@@ -79,8 +79,9 @@ app.addEventListener("listen", ({ hostname, port, secure }) => {
   );
   if (isDevelopment()) {
     fetch("http://localhost:8001/live-reload/trigger", { method: "post" })
-      .catch(() => {
+      .catch((error) => {
         console.log("could not trigger live reload");
+        console.error(error);
       });
   }
 });
