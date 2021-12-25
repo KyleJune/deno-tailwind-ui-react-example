@@ -4,12 +4,12 @@
   },
   "lint": {
     "files": {
-      "exclude": ["public/main.js", "deps/"]
+      "exclude": ["public/all/main.js", "deps/"]
     }
   },
   "fmt": {
     "files": {
-      "exclude": ["public/main.js", "deps/"]
+      "exclude": ["public/all/main.js", "deps/"]
     }
   }
 }
