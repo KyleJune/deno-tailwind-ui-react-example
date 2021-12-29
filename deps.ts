@@ -9,11 +9,7 @@ export { StaticRouter } from "./deps/react-router-dom/server.ts";
 import typography from "https://esm.sh/@twind/typography@0.0.2?no-check";
 export { typography };
 
-export {
-  domSheet,
-  getStyleTag,
-  virtualSheet,
-} from "https://esm.sh/twind@0.16.16/sheets";
+export { getStyleTag, virtualSheet } from "https://esm.sh/twind@0.16.16/sheets";
 export type { VirtualSheet } from "https://esm.sh/twind@0.16.16/sheets";
 
 export {

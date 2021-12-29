@@ -28,13 +28,17 @@ For classes to be included in the style tag when rendered on the server, you
 must use the tw template string around the className.
 
 ```tsx
-import { React, tw } from "./deps.ts";
+import { React } from "./deps.ts";
+import { TwindContext } from "./twind.tsx";
 
-export const Example = () => (
-  <h2 className={tw`bg-gray-800`}>
-    Example
-  <h2>
-);
+export const Example = () => {
+  const { tw } = useContext(TwindContext);
+  return (
+    <h2 className={tw`bg-gray-800`}>
+      Example
+    <h2>
+  );
+};
 ```
 
 ## Deploy
