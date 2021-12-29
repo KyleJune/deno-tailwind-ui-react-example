@@ -11,7 +11,7 @@ import {
   Transition,
   XIcon,
 } from "./deps.ts";
-import { TwindContext } from "./twind.tsx";
+import { TwindContext } from "./twind.ts";
 const { Fragment, useContext } = React;
 
 const navigation = [
