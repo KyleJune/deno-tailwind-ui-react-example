@@ -5,7 +5,6 @@ import {
   renderToString,
   StaticRouter,
   typography,
-  VirtualSheet,
   virtualSheet,
 } from "../deps.ts";
 import { isDevelopment } from "../utils/environment.ts";
@@ -15,26 +14,11 @@ import {
   HelmetData,
   HelmetProvider,
   React,
-  setup,
+  twind,
 } from "./deps.ts";
+import { TwindContext } from "./twind.tsx";
 
-function setupSheet(): VirtualSheet {
-  const sheet = virtualSheet();
-  setup({
-    sheet,
-    theme: {},
-    plugins: { ...typography() },
-  });
-  return sheet;
-}
-
-let SHEET_SINGLETON: VirtualSheet | null = null;
-function getSheet(): VirtualSheet {
-  const sheet = SHEET_SINGLETON ??
-    (SHEET_SINGLETON = setupSheet());
-  sheet.reset();
-  return sheet;
-}
+const twindPlugins = { ...typography() };
 
 export interface HTMLProps {
   helmet: HelmetData;
@@ -69,23 +53,34 @@ export const HTML = (props: HTMLProps) => {
 
 export interface ServerAppProps {
   helmetContext: Record<never, never>;
+  twindContext: twind.Instance;
   location: string;
 }
 
 const ServerApp = (props: ServerAppProps) => (
   <HelmetProvider context={props.helmetContext}>
-    <StaticRouter location={props.location}>
-      <App />
-    </StaticRouter>
+    <TwindContext.Provider value={props.twindContext}>
+      <StaticRouter location={props.location}>
+        <App />
+      </StaticRouter>
+    </TwindContext.Provider>
   </HelmetProvider>
 );
 
 /** Renders the application on the server. */
 export function ssr(location: string) {
   const helmetContext = {};
-  const sheet = getSheet();
+  const sheet = virtualSheet();
+  const twindContext = twind.create({
+    sheet,
+    plugins: twindPlugins,
+  });
   const renderedApp = renderToString(
-    <ServerApp helmetContext={helmetContext} location={location} />,
+    <ServerApp
+      helmetContext={helmetContext}
+      twindContext={twindContext}
+      location={location}
+    />,
   );
   const { helmet } = helmetContext as FilledContext;
   const renderedHTML = `<!DOCTYPE html>${

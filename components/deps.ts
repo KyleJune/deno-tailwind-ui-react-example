@@ -14,7 +14,7 @@ export {
   Routes,
 } from "../deps/react-router-dom/index.ts";
 
-export { setup, tw } from "https://esm.sh/twind@0.16.16";
+export * as twind from "https://esm.sh/twind@0.16.16";
 
 export {
   Disclosure,
