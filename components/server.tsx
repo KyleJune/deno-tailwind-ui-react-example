@@ -16,7 +16,7 @@ import {
   React,
   twind,
 } from "./deps.ts";
-import { TwindContext } from "./twind.tsx";
+import { TwindContext } from "./twind.ts";
 
 const twindPlugins = { ...typography() };
 
