@@ -1,5 +1,5 @@
-import * as React from "https://cdn.esm.sh/v58/@types/react@17.0.37/index.d.ts";
-import type { History } from "https://cdn.esm.sh/v58/history@5.1.0/index.d.ts";
+import * as React from "https://cdn.esm.sh/v59/@types/react@17.0.38/index.d.ts";
+import type { History } from "https://cdn.esm.sh/v59/history@5.1.0/index.d.ts";
 import { MemoryRouter, Navigate, Outlet, Route, Router, Routes, createRoutesFromChildren, generatePath, matchRoutes, matchPath, resolvePath, renderMatches, useHref, useInRouterContext, useLocation, useMatch, useNavigate, useNavigationType, useOutlet, useParams, useResolvedPath, useRoutes, useOutletContext } from "../react-router/index.d.ts";
 import type { To } from "../react-router/index.d.ts";
 export { MemoryRouter, Navigate, Outlet, Route, Router, Routes, createRoutesFromChildren, generatePath, matchRoutes, matchPath, renderMatches, resolvePath, useHref, useInRouterContext, useLocation, useMatch, useNavigate, useNavigationType, useOutlet, useParams, useResolvedPath, useRoutes, useOutletContext };
