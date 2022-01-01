@@ -1,6 +1,6 @@
-import * as React from "https://cdn.esm.sh/v58/@types/react@17.0.37/index.d.ts";
-import type { History, InitialEntry, Location, Path, To } from "https://cdn.esm.sh/v58/history@5.1.0/index.d.ts";
-import { Action as NavigationType } from "https://cdn.esm.sh/v58/history@5.1.0/index.d.ts";
+import * as React from "https://cdn.esm.sh/v59/@types/react@17.0.38/index.d.ts";
+import type { History, InitialEntry, Location, Path, To } from "https://cdn.esm.sh/v59/history@5.1.0/index.d.ts";
+import { Action as NavigationType } from "https://cdn.esm.sh/v59/history@5.1.0/index.d.ts";
 export type { Location, Path, To, NavigationType };
 /**
  * A Navigator is a "location changer"; it's how you get to different locations.
