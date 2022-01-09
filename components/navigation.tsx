@@ -17,7 +17,7 @@ const { Fragment, useContext } = React;
 const navigation = [
   { name: "Home", to: "/" },
   { name: "About", to: "/about" },
-  { name: "Users", to: "/users" },
+  { name: "Posts", to: "/posts" },
 ];
 
 export const Navigation = () => {
