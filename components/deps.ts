@@ -9,6 +9,8 @@ export {
   NavLink,
   Route,
   Routes,
+  useNavigate,
+  useParams,
 } from "../deps/react-router-dom/index.ts";
 
 export * as twind from "https://esm.sh/twind@0.16.16?target=deno&pin=v59";
@@ -32,3 +34,22 @@ export type {
   FilledContext,
   HelmetData,
 } from "https://esm.sh/react-helmet-async@1.2.2?target=deno&pin=v59";
+
+export {
+  dehydrate,
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+  QueryErrorResetBoundary,
+  useMutation,
+  useQuery,
+  useQueryClient,
+  useQueryErrorResetBoundary,
+} from "https://esm.sh/react-query@3.34.7?target=deno&pin=v59";
+export type { DehydratedState } from "https://esm.sh/react-query@3.34.7?target=deno&pin=v59";
+
+export {
+  ErrorBoundary,
+  useErrorHandler,
+} from "https://esm.sh/react-error-boundary@3.1.4?target=deno&pin=v59";
+export type { FallbackProps } from "https://esm.sh/react-error-boundary@3.1.4?target=deno&pin=v59";

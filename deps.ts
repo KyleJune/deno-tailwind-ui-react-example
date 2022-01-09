@@ -17,11 +17,14 @@ export type { VirtualSheet } from "https://esm.sh/twind@0.16.16/sheets?target=de
 export {
   Application,
   Context,
-  isHttpError,
+  etag,
   Router,
   ServerSentEvent,
 } from "https://deno.land/x/oak@v10.1.0/mod.ts";
 export type {
   ContextSendOptions,
+  Middleware,
   ServerSentEventTarget,
 } from "https://deno.land/x/oak@v10.1.0/mod.ts";
+
+export { default as serialize } from "https://esm.sh/serialize-javascript@6.0.0?target=deno&pin=v59";

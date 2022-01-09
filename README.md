@@ -7,7 +7,8 @@ The navigation bar is from
 [Tailwind UI's preview components list](https://tailwindui.com/preview#component-70a9bdf83ef2c8568c5cddf6c39c2331).
 I updated it to use NavLinks from React Router. For the body of most pages, I
 just have it display the name of the page and update the title to show that
-React Router and Helmet are working correctly.
+React Router and Helmet are working correctly. The post pages demonstrate using
+React Suspense with React Query.
 
 [Click here](https://tailwind-ui-react-example.deno.dev/) to see this example
 live on deno deploy.
