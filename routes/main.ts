@@ -3,7 +3,10 @@ import { etag, extname, Router } from "../deps.ts";
 import { getQueryClient, trySend } from "../utils/oak.ts";
 import { ssr } from "../components/server.tsx";
 import { apiRouter } from "./api/main.ts";
-import { getPost, getPosts } from "../components/post.tsx";
+import { postService } from "../services/post.ts";
+import { errorJSON } from "../models/error.ts";
+import { HttpError } from "../models/deps.ts";
+import { PostInput } from "../models/post.ts";
 
 const mainRouter = new Router()
   .use(async ({ request, response }, next) => {
@@ -33,16 +36,43 @@ const mainRouter = new Router()
     const queryClient = getQueryClient(context);
     await queryClient.prefetchQuery(
       "getPosts",
-      () => getPosts(context.request.url),
+      () => {
+        try {
+          return postService.getAll();
+        } catch (error) {
+          throw errorJSON(error);
+        }
+      },
     );
     await next();
   })
+  .post("/posts", async ({ request, response }) => {
+    let form: URLSearchParams;
+    try {
+      form = await request.body({ type: "form" }).value;
+    } catch (cause) {
+      throw new HttpError(400, "invalid form data", { cause });
+    }
+
+    const input: PostInput = {};
+    for (const [key, value] of form) {
+      input[key as keyof PostInput] = value;
+    }
+    const post = postService.add(input);
+    response.redirect(`/post/${post.id}`);
+  })
   .get("/post/:id", async (context, next) => {
     const queryClient = getQueryClient(context);
-    const { params, request } = context;
+    const { params } = context;
     await queryClient.prefetchQuery(
       ["getPost", params.id],
-      () => getPost(parseInt(params.id), request.url),
+      () => {
+        try {
+          return postService.get(params.id);
+        } catch (error) {
+          throw errorJSON(error);
+        }
+      },
     );
     await next();
   })

@@ -3,7 +3,7 @@
 
 import { isBrowser } from "../config.ts";
 import { ErrorJSON } from "../models/error.ts";
-import { Post } from "../models/post.ts";
+import { Post, Posts } from "../models/post.ts";
 import {
   ErrorBoundary,
   Helmet,
@@ -38,10 +38,13 @@ export const PostForm = () => {
   });
   const { error, error_description } = (mutation.error as ErrorJSON) ?? {};
   return (
-    <form onSubmit={mutation.mutate}>
+    <form onSubmit={mutation.mutate} method="post">
       <h2>New Post</h2>
       {error && (
-        <h5 onClick={() => mutation.reset()}>{error}: {error_description}</h5>
+        <h5 onClick={() => mutation.reset()}>
+          {error}
+          {error_description && `: ${error_description}`}
+        </h5>
       )}
       <label>
         Title:
@@ -68,13 +71,7 @@ export const PostForm = () => {
   );
 };
 
-export const getPosts = async (
-  baseUrl?: URL | string,
-) => {
-  let path = "/api/posts";
-  if (baseUrl) path = new URL(path, baseUrl).href;
-  return await queryApi<{ posts: Post[] }>(path);
-};
+export const getPosts = () => queryApi<Posts>("/api/posts");
 
 export const PostListFallback = () => <p>Loading posts...</p>;
 
@@ -127,23 +124,17 @@ export const PostDirectory = () => {
   );
 };
 
-export const getPost = async (
-  id: number,
-  baseUrl?: URL | string,
-) => {
-  let path = `/api/post/${id}`;
-  if (baseUrl) path = new URL(path, baseUrl).href;
-  return await queryApi<Post>(path);
-};
+export const getPost = (id: string | number) =>
+  queryApi<Post>(`/api/post/${id}`);
 
 export const PostDetailFallback = () => <p>Loading post...</p>;
 
 export const PostDetail = () => {
   const { id } = useParams();
-  if (!id) throw new Error("invalid post id");
+  if (!id) throw new Error("id required");
   const { data: post } = useQuery(
     ["getPost", id],
-    () => getPost(parseInt(id)),
+    () => getPost(id),
   );
   return (
     <>
